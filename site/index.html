@@ -1,2 +1,63 @@
-<!DOCTYPE HTML><html><head><title>Vomit Draft Editor</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta charset="UTF-8"><link rel="icon" href="favicon.ico" type="image/x-icon"><link rel="stylesheet" href="/static/skeleton.css" type="text/css"><link rel="stylesheet" href="/static/style.css" type="text/css"><script src="/static/htmx.min.js"></script><script src="/static/htmx-serverless.js"></script><script src="/static/wasm-dispatcher.js" type="module"></script><script type="module">import { genHandler } from "/static/wasm-dispatcher.js";
-htmxServerless.handlers.set("/tick", genHandler("/tick"));htmxServerless.handlers.set("/reset-timer", genHandler("/reset-timer"));htmxServerless.handlers.set("/finish", genHandler("/finish"));htmxServerless.handlers.set("/close-block", genHandler("/close-block"));htmxServerless.handlers.set("/times-up", genHandler("/times-up"));</script></head></html><div><h1>Vomit Draft Editor</h1><p>Once you start typing you can only stop typing for 5 seconds before your text is locked in!</p><form hx-post="/finish" hx-target="#container" hx-swap="outerHTML" hx-ext="serverless"><div id="container"><div id="active"><textarea name="boxes" cols="100" rows="5" hx-post="/reset-timer" hx-trigger="input changed delay:300ms, paste changed delay:300ms, cut changed delay:300ms" hx-target="#timer" hx-swap="outerHTML" hx-ext="serverless"></textarea><p id="timer" hx-post="/tick" hx-trigger="every 1000ms" hx-target="#timer" hx-swap="outerHTML" hx-ext="serverless" hx-vals="js:{timeRemaining: 5}">Remaining: 5</p></div><button type="submit">Finalise</button></div></form></div>
+<!doctype html>
+<html>
+  <head>
+    <title>Vomit Draft Editor</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/static/skeleton.css" type="text/css" />
+    <link rel="stylesheet" href="/static/style.css" type="text/css" />
+    <script src="/static/htmx.min.js"></script>
+    <script src="/static/htmx-serverless.js"></script>
+    <script src="/static/wasm-dispatcher.js" type="module"></script>
+    <script type="module">
+      import { genHandler } from "/static/wasm-dispatcher.js";
+      htmxServerless.handlers.set("/tick", genHandler("/tick"));
+      htmxServerless.handlers.set("/reset-timer", genHandler("/reset-timer"));
+      htmxServerless.handlers.set("/finish", genHandler("/finish"));
+      htmxServerless.handlers.set("/close-block", genHandler("/close-block"));
+      htmxServerless.handlers.set("/times-up", genHandler("/times-up"));
+    </script>
+  </head>
+</html>
+<div>
+  <h1>Vomit Draft Editor</h1>
+  <p>
+    Once you start typing you can only stop typing for 5 seconds before your
+    text is locked in!
+  </p>
+  <form
+    hx-post="/finish"
+    hx-target="#container"
+    hx-swap="outerHTML"
+    hx-ext="serverless"
+  >
+    <div id="container">
+      <div id="active">
+        <textarea
+          name="boxes"
+          cols="100"
+          rows="5"
+          hx-post="/reset-timer"
+          hx-trigger="input changed delay:300ms, paste changed delay:300ms, cut changed delay:300ms"
+          hx-target="#timer"
+          hx-swap="outerHTML"
+          hx-ext="serverless"
+        ></textarea>
+        <p
+          id="timer"
+          hx-post="/tick"
+          hx-trigger="every 1000ms"
+          hx-target="#timer"
+          hx-swap="outerHTML"
+          hx-ext="serverless"
+          hx-vals="js:{timeRemaining: 5}"
+        >
+          Remaining: 5
+        </p>
+      </div>
+      <button type="submit">Finalise</button>
+    </div>
+  </form>
+</div>
