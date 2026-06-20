@@ -51,9 +51,9 @@ function callWithString(func, str) {
 
 export function genHandler(endpoint) {
   /*Takes an endpoint like POST   /tick
-    with form urlencoded:         boxes=a&boxes=&timeRemaining=3
-    and creates a new endpoint:   /tick?boxes=a&boxes=&timeRemaining=3
-    then calls the wasm:          dispatch(/tick?boxes=a&boxes=&timeRemaining=3)
+    with form urlencoded:         boxes=a&boxes=b&timeRemaining=3
+    and creates a new endpoint:   /tick?boxes=a&boxes=b&timeRemaining=3
+    then calls the wasm:          dispatch("/tick?boxes=a&boxes=b&timeRemaining=3")
   */
   return function (text, params, xhr) {
     const qs = new URLSearchParams(params).toString();
