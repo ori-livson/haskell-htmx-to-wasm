@@ -40,4 +40,4 @@ cabal clean
 cabal run
 
 log "Hosting site & static folders on port 8000"
-python3 -m http.server
+python3 -m http.server -d site
