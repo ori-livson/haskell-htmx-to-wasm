@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="/static/skeleton.css" type="text/css" />
-    <link rel="stylesheet" href="/static/style.css" type="text/css" />
-    <script src="/static/htmx.min.js"></script>
-    <script src="/static/htmx-serverless.js"></script>
-    <script src="/static/wasm-dispatcher.js" type="module"></script>
+    <link rel="stylesheet" href="./static/skeleton.css" type="text/css" />
+    <link rel="stylesheet" href="./static/style.css" type="text/css" />
+    <script src="./static/htmx.min.js"></script>
+    <script src="./static/htmx-serverless.js"></script>
+    <script src="./static/wasm-dispatcher.js" type="module"></script>
     <script type="module">
-      import { genHandler } from "/static/wasm-dispatcher.js";
+      import { genHandler } from "./static/wasm-dispatcher.js";
       htmxServerless.handlers.set("/tick", genHandler("/tick"));
       htmxServerless.handlers.set("/reset-timer", genHandler("/reset-timer"));
       htmxServerless.handlers.set("/finish", genHandler("/finish"));

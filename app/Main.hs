@@ -57,15 +57,23 @@ handler input = do
   return . LT.unpack . renderText $ html
 
 parseQuery :: T.Text -> QueryMap
-parseQuery url =
-  let qs = T.drop 1 $ snd $ T.breakOn "?" url
-      pairs = T.splitOn "&" qs
-      toPair p = case T.splitOn "=" p of
-        [k, v] -> (k, v)
-        [k] -> (k, "")
-        (k : vs) -> (k, T.intercalate "=" vs)
-        [] -> ("", "")
-   in Map.fromListWith (++) [(k, [v]) | p <- pairs, p /= "", let (k, v) = toPair p]
+parseQuery url = Map.fromListWith (flip (++)) keyValuePairs --  (flip (++)) to ensure correct order of entries
+  where
+    -- Drop everything up to and including the '?'
+    -- Note, we use T.drop 1 because of T.breakOn, e.g., T.breakOn "::" "a::b::c" == ("a","::b::c")
+    queryString = T.drop 1 $ snd $ T.breakOn "?" url
+
+    -- Split on '&' and discard any empty segments
+    params = filter (/= "") $ T.splitOn "&" queryString
+
+    -- Convert each "key=value" param to a (key, [value]) map entry
+    keyValuePairs = map toEntry params
+
+    toEntry param = (key, [value])
+      where
+        -- Split on the first '=' only, then drop the '=' from the tail
+        (key, rest) = T.breakOn "=" param
+        value = T.drop 1 rest
 
 lookupInt :: T.Text -> QueryMap -> Maybe Int
 lookupInt key qm =

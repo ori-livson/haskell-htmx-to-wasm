@@ -213,14 +213,14 @@ pageHead = doctypehtml_ $
 
 css :: HTML
 css = do
-  link_ [rel_ "stylesheet", href_ "/static/skeleton.css", type_ "text/css"]
-  link_ [rel_ "stylesheet", href_ "/static/style.css", type_ "text/css"]
+  link_ [rel_ "stylesheet", href_ "./static/skeleton.css", type_ "text/css"]
+  link_ [rel_ "stylesheet", href_ "./static/style.css", type_ "text/css"]
 
 js :: HTML
 js = do
-  script_ [src_ "/static/htmx.min.js"] emptyText
-  script_ [src_ "/static/htmx-serverless.js"] emptyText
-  script_ [src_ "/static/wasm-dispatcher.js", type_ "module"] emptyText
+  script_ [src_ "./static/htmx.min.js"] emptyText
+  script_ [src_ "./static/htmx-serverless.js"] emptyText
+  script_ [src_ "./static/wasm-dispatcher.js", type_ "module"] emptyText
   handlers ["/tick", "/reset-timer", "/finish", "/close-block", "/times-up"]
 
 registerHandler :: Text -> Text
@@ -230,7 +230,7 @@ registerHandler route =
 handlers :: [Text] -> HTML
 handlers routes =
   script_ [type_ "module"] $
-    "import { genHandler } from \"/static/wasm-dispatcher.js\";\n"
+    "import { genHandler } from \"./static/wasm-dispatcher.js\";\n"
       <> foldMap registerHandler routes
 
 faviconLink :: HTML

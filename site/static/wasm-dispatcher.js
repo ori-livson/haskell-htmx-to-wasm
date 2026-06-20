@@ -1,9 +1,4 @@
-import {
-  WASI,
-  File,
-  OpenFile,
-  ConsoleStdout,
-} from "https://cdn.jsdelivr.net/npm/@bjorn3/browser_wasi_shim@0.3.0/+esm";
+import { WASI, File, OpenFile, ConsoleStdout } from "./browser-wasi-shim.js";
 
 // Set up WASI environment with stdin (empty file), stdout, and stderr piped to console
 const wasi = new WASI(

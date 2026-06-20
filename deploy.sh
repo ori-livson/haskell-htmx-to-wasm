@@ -31,8 +31,8 @@ nix shell \
     log "Building wasm"
     wasm32-wasi-cabal build -f wasm
 
-    log "Copying static/wasm-vomit-draft.wasm"
-    cp $(find dist-newstyle -name "*.wasm" | tail -n 1) static/wasm-vomit-draft.wasm
+    log "Copying site/static/wasm-vomit-draft.wasm"
+    cp $(find dist-newstyle -name "*.wasm" | tail -n 1) site/static/wasm-vomit-draft.wasm
   '
 
 log "Building and running site generator"
