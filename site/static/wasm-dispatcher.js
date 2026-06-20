@@ -12,7 +12,7 @@ const wasi = new WASI(
 );
 
 const wasm = await WebAssembly.compileStreaming(
-  fetch("/static/wasm-vomit-draft.wasm"),
+  fetch("./static/wasm-vomit-draft.wasm"),
 );
 
 const inst = await WebAssembly.instantiate(wasm, {
