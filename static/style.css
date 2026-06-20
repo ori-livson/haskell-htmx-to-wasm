@@ -1,0 +1,32 @@
+html {
+  background-color: black;
+  color: white;
+  padding: 20px;
+}
+
+textarea {
+  display: block;
+  background-color: aqua;
+
+  overflow-y: scroll;
+  scrollbar-color: #444 #111;
+
+  /* Unset Skeleton.css properties */
+  height: unset;
+  min-height: unset;
+  max-height: unset;
+}
+
+button {
+  background: transparent;
+  color: aqua;
+  border: 1px solid aqua;
+  cursor: pointer;
+  margin-top: 12px;
+  margin-right: 12px;
+}
+
+button:hover {
+  background: aqua;
+  color: black;
+}

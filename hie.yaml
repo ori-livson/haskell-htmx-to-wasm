@@ -1,0 +1,10 @@
+cradle:
+  cabal:
+    - path: "app"
+      component: "wasm-vomit-draft:exe:wasm-vomit-draft"
+
+    - path: "app/Ui.hs"
+      component: "wasm-vomit-draft:exe:wasm-vomit-draft"
+
+    - path: "app/Exports.hs"
+      component: "wasm-vomit-draft:exe:wasm-vomit-draft"
